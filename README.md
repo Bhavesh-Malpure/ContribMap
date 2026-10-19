@@ -33,7 +33,7 @@ ContribMap helps developers find meaningful open-source issues through skill-bas
 - [Getting Started](#-getting-started)
 - [Environment Configuration](#-environment-configuration)
 - [Database Setup](#-database-setup)
-- [API Endpoints](#-api-endpoints)
+- [API Endpoints](#-api-endpoints) 
 - [Design System](#-design-system)
 - [Security](#-security)
 - [Current Scope](#-current-scope)
@@ -285,7 +285,184 @@ ContribMap/
 *Note: The tree highlights the main application areas. Exact filenames and additional directories may differ slightly between versions.*
 
 ---
-
 ## 🚀 Getting Started
 
 Follow these steps to run ContribMap locally.
+
+### Prerequisites
+
+Install the following software before proceeding:
+
+- [Node.js](https://nodejs.org/) — use a version compatible with the project's dependencies.
+- [npm](https://www.npmjs.com/) — included with Node.js.
+- [MySQL Community Server](https://dev.mysql.com/downloads/mysql/).
+- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) — recommended for database management.
+- [Git](https://git-scm.com/).
+
+### 1. Clone the repository
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd ContribMap
+```
+
+Replace `<YOUR_REPOSITORY_URL>` with the actual Git repository URL.
+
+### 2. Install dependencies
+
+From the project root, run:
+
+```bash
+npm run install:all
+```
+
+If this script is unavailable in your current checkout, install the root and application dependencies according to the scripts in the respective `package.json` files.
+
+### 3. Configure environment variables
+
+Create the client and server environment files using the supplied examples, as applicable.
+
+```bash
+# From the project root
+
+# Windows Command Prompt
+copy server\.env.example server\.env
+copy client\.env.example client\.env
+```
+
+If an example file is not present in one of these directories, create the corresponding `.env` file using the variables required by that application's configuration.
+
+See [Environment Configuration](#-environment-configuration).
+
+### 4. Configure MySQL
+
+1. Start your MySQL server.
+2. Open MySQL Workbench and connect to your local MySQL instance.
+3. Create the application database.
+4. Create the required tables and relationships.
+5. Configure the server's database credentials.
+
+See [Database Setup](#-database-setup).
+
+### 5. Start the application
+
+Run the frontend and backend together, if the root development script is configured to start both:
+
+```bash
+npm run dev
+```
+
+Alternatively, use separate terminals:
+
+```bash
+npm run dev:server
+```
+
+```bash
+npm run dev:client
+```
+
+### 6. Open the application
+
+The default development addresses are expected to be:
+
+- **Frontend:** `http://localhost:5173`
+- **Backend API:** `http://localhost:4000`
+- **Health check:** `http://localhost:4000/api/health`
+
+These addresses depend on the environment configuration and the actual startup scripts.
+
+---
+
+## ⚙️ Environment Configuration
+
+Keep credentials in environment variables rather than hardcoding them into application code.
+
+Typical configuration categories include:
+
+| Variable category | Purpose |
+|---|---|
+| Server port | Port used by the Express application |
+| Database host | MySQL server hostname |
+| Database port | MySQL connection port |
+| Database name | Application database |
+| Database user | Database account |
+| Database password | Database credential |
+| JWT secret | Token signing secret, if JWT authentication is enabled |
+| GitHub token | Optional token for GitHub API access and higher rate limits |
+| Client API URL | Backend API base URL |
+
+The actual variable names must match those read by the existing application configuration.
+
+**Important security practices:**
+
+- Never commit `.env` files containing real credentials.
+- Keep `.env.example` limited to placeholder values.
+- Use strong, unique secrets.
+- Do not expose server-side GitHub tokens through frontend environment variables.
+- Rotate any credential that has been accidentally published.
+
+---
+
+## 🗄️ Database Setup
+
+ContribMap uses MySQL as its relational data store.
+
+The database is intended to support entities such as:
+
+- Users and authentication data.
+- Skills and user-skill associations.
+- Repository and issue information.
+- Issue labels and skill associations.
+- Bookmarks and contribution-tracking status.
+
+The exact tables, column names, constraints, and indexes must match the SQL queries and repository implementations in the current source code.
+
+### Setup checklist
+
+- [ ] Start the MySQL service.
+- [ ] Create the application database.
+- [ ] Create tables matching the backend repository queries.
+- [ ] Add primary keys and appropriate foreign keys.
+- [ ] Configure database environment variables.
+- [ ] Verify that the backend connects successfully.
+- [ ] Test registration, login, issue discovery, and bookmarking.
+
+> **Schema note:** Do not assume that every planned feature already has a database table. Create tables based on the implemented code and current requirements.
+
+---
+
+## 🔌 API Endpoints
+
+The following table summarizes the application's expected API surface. Confirm the current route definitions and authentication requirements in `server/src/routes/` before relying on individual endpoints.
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/api/health` | Check API health |
+| `POST` | `/api/auth/register` | Register a user |
+| `POST` | `/api/auth/login` | Authenticate a user |
+| `GET` | `/api/profile` | Retrieve the current user's profile |
+| `PUT` | `/api/profile` | Update the current user's profile |
+| `GET` | `/api/skills` | Retrieve available skills |
+| `GET` | `/api/issues` | Search or discover issues |
+| `GET` | `/api/issues/:id` | Retrieve issue details |
+| `GET` | `/api/bookmarks` | Retrieve saved issues |
+| `POST` | `/api/bookmarks` | Save an issue |
+| `PATCH` | `/api/bookmarks/:id` | Update bookmark or tracking data |
+| `DELETE` | `/api/bookmarks/:id` | Remove a bookmark |
+
+### Example health check
+
+```bash
+curl http://localhost:4000/api/health
+```
+
+### Example issue discovery request
+
+```bash
+curl "http://localhost:4000/api/issues"
+```
+
+The supported query parameters, response format, and authorization requirements depend on the current route implementation.
+
+---
