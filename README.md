@@ -466,3 +466,148 @@ curl "http://localhost:4000/api/issues"
 The supported query parameters, response format, and authorization requirements depend on the current route implementation.
 
 ---
+## 🎨 Design System
+
+ContribMap uses a calm, developer-focused interface inspired by GitHub's practical UI conventions.
+
+| Color | Hex | Usage |
+|---|---|---|
+| Warm Off-White | `#F2EFE9` | Primary background |
+| Deep Slate Blue | `#4F5D65` | Main accents and visual structure |
+| Muted Taupe | `#B5ABA0` | Secondary accents and borders |
+
+### Typography
+
+- **Headings:** `Roboto`, `-apple-system`, `BlinkMacSystemFont`, `"Helvetica Neue"`, `"Segoe UI"`, sans-serif.
+- **Body text:** `-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `Helvetica`, `Arial`, sans-serif.
+- **Code and technical text:** monospace stacks such as `"SFMono-Regular"`, `Consolas`, and `Inconsolata`.
+
+### Interface principles
+
+- Clear information hierarchy.
+- Readable issue cards.
+- Consistent spacing and typography.
+- Responsive layouts.
+- Visible matching explanations.
+- Accessible contrast and interaction states.
+
+---
+
+## 🔐 Security
+
+Security is an important part of the application architecture.
+
+ContribMap includes or is designed around the following protections, depending on the route and configuration:
+
+- Authentication middleware for protected resources.
+- Request validation.
+- Rate limiting.
+- Centralized error handling.
+- Environment-based secret management.
+- Parameterized database queries where supported by the repository layer.
+
+Never trust client-provided user IDs or authorization claims without server-side verification. Protected profile and bookmark operations should always be scoped to the authenticated user.
+
+---
+
+## 🎯 Current Scope
+
+### Included in the MVP
+
+- User authentication and profiles.
+- Technical skill selection.
+- GitHub issue discovery.
+- Issue filtering and matching scores.
+- Match explanations.
+- Issue details.
+- Bookmark management.
+- Contribution-status tracking.
+
+### Not included in the current MVP
+
+- Automatically submitting applications to repositories.
+- Automatically commenting on GitHub issues.
+- Automatically creating pull requests.
+- Guaranteeing issue availability or maintainer acceptance.
+
+Contributors can open the original GitHub issue and participate using GitHub's own contribution workflow.
+
+---
+
+## 🚧 Future Enhancements
+
+Potential improvements for future releases include:
+
+- 📊 Contribution history and progress analytics.
+- 🔔 Personalized notifications.
+- 🧑‍💻 Maintainer profiles and repository management.
+- 🧠 More advanced recommendation strategies.
+- 📈 Improved matching explanations.
+- 🔍 Expanded search and filtering.
+- 🕓 Search history.
+- 🏆 Contribution milestones and achievements.
+- 🌐 Additional integrations with developer platforms.
+
+These are future possibilities, not claims that the features are already implemented.
+
+---
+
+## 🧪 Testing
+
+The backend test suite has been run during development, with **16 tests passing** in that test run.
+
+To run the tests in your current environment:
+
+```bash
+npm test
+```
+
+If the root test script is not configured for your checkout, use the test script defined in `server/package.json`.
+
+Run the frontend production build before release:
+
+```bash
+npm run build
+```
+
+Resolve dependency installation or build errors before treating the application as production-ready.
+
+---
+
+## 🤝 Contributing
+
+Contributions, suggestions, bug reports, and improvements are welcome.
+
+### How to contribute
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Run relevant tests.
+5. Commit your changes with a clear message.
+6. Open a pull request describing the improvement.
+
+Example:
+
+```bash
+git checkout -b feat/improve-issue-matching
+git add .
+git commit -m "feat: improve issue matching"
+git push origin feat/improve-issue-matching
+```
+
+Please avoid committing credentials, generated build artifacts, or unrelated changes.
+
+---
+
+## 📄 License
+
+ContribMap includes a `LICENSE` file in the repository root. Refer to that file for the applicable license and redistribution terms.
+
+---
+
+<div align="center">
+
+### 🌱 Every great contributor starts somewhere.
+
+**Find an issue. Learn something new. Make an impact.**
