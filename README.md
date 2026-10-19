@@ -611,6 +611,6 @@ ContribMap includes a `LICENSE` file in the repository root. Refer to that file 
 ### 🌱 Every great contributor starts somewhere.
 
 **Find an issue. Learn something new. Make an impact.**
-Made with ### Bhavesh🙋‍♂️ for the open-source community.
+Made with Bhavesh🙋‍♂️ for the open-source community.
 
 </div>
