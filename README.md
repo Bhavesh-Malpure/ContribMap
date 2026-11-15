@@ -2,7 +2,7 @@
 
 # 🧭 ContribMap
 
-### Find your next open-source contribution.
+### Find your next open-source contribution
 
 **Discover GitHub issues that match your skills, experience, and interests.**
 
