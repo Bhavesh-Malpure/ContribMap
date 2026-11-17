@@ -4,7 +4,7 @@
 
 ### Find your next open-source contribution
 
-**Discover GitHub issues that match your skills, experience, and interests.**
+**Discover GitHub issues that match your skills, experience, and interests.***
 
 ContribMap helps developers find meaningful open-source issues through skill-based matching, beginner-friendly filters, and personalized recommendations.
 
